@@ -1,4 +1,4 @@
-package module.start;
+package module.start.api;
 
 /**
  * Created by Administrator on 2017/8/31.
@@ -7,7 +7,7 @@ package module.start;
 public interface SplashView {
 
     void initContentView();
-
+    //进去启动页面
     void startWelcomeGuideActivity();
 
     void startHomeActivity();
