@@ -8,8 +8,18 @@ import android.view.View;
 
 import com.demoboxtest.R;
 import com.demoboxtest.config.Const;
+import com.demoboxtest.database.FunctionDao;
+import com.demoboxtest.model.entities.Function;
+import com.demoboxtest.model.entities.FunctionBean;
+import com.demoboxtest.module.start.renderer.CustomTutorialSupprtFragment;
 import com.demoboxtest.utils.SPUtils;
 import com.demoboxtest.utils.StateBarTranslucentUtils;
+import com.demoboxtest.utils.StreamUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.orhanobut.logger.Logger;
+
+import java.util.List;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -42,17 +52,44 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
      * 当第一次打开app时，将功能类别存储到本地数据库
      */
     private void saveFunctionToDB() {
-//        Function function = null;
-//        function
-
+        Function function = null;
+        try {
+             function = (new Gson()).fromJson(StreamUtils.get(getApplicationContext(), R.raw.function), Function.class);
+        } catch (JsonSyntaxException e) {
+            Logger.e("读取raw文件的function.json文件异常" + e.getMessage());
+        }
+        if (function != null && function.getFunction() != null && function.getFunction().size() != 0) {
+            List<FunctionBean> functionBeenList = function.getFunction();
+            FunctionDao functionDao = new FunctionDao(getApplicationContext());
+            functionDao.insertFunctionBeanList(functionBeenList);
+        }
     }
 
-
+    /**
+     * 第一次打开App时，将news的所有类别保存到本地数据库
+     */
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bRetry:
+
+        }
 
     }
+    public void replaceTutorialFragment() {
+//        getSupportFragmentManager().beginTransaction()
+//        .replace(R.id.container_welcome,new CustomTutorialSupprtFragment());
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
 
 }
