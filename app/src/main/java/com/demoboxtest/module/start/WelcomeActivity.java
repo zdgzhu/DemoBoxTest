@@ -72,13 +72,16 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bRetry:
+                replaceTutorialFragment();
+                break;
 
         }
 
     }
     public void replaceTutorialFragment() {
-//        getSupportFragmentManager().beginTransaction()
-//        .replace(R.id.container_welcome,new CustomTutorialSupprtFragment());
+        getSupportFragmentManager().beginTransaction()
+        .replace(R.id.container_welcome,new CustomTutorialSupprtFragment())
+        .commit();
     }
 
     @Override
