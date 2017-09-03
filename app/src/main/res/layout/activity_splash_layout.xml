@@ -28,8 +28,8 @@
         android:layout_below="@+id/logo_splash"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/holo_green_light"
         android:textSize="18sp"
-        android:alpha="0.0"
+        android:alpha="0.5"
         />
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package module.start.api;
+package com.demoboxtest.module.start.api;
 
 /**
  * Created by Administrator on 2017/8/31.
@@ -7,9 +7,11 @@ package module.start.api;
 public interface SplashView {
 
     void initContentView();
-    //进去启动页面
+
+    //回调这个方法，进入欢迎界面
     void startWelcomeGuideActivity();
 
+    //回调这个方法，进入程序主界面
     void startHomeActivity();
 
 }

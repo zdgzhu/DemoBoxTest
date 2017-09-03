@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
     compileSdkVersion 25
@@ -11,6 +12,24 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    greendao {
+        //数据库schema版本，也可以理解为数据库版本号
+        schemaVersion 1
+        //设置DaoMaster 、DaoSession、Dao包名
+        daoPackage 'com.demoboxtest.greendao'
+//        //设置DaoMaster 、DaoSession、Dao目录
+        targetGenDir 'src/main/java'
+        //设置生成单元测试目录
+        //targetGenDirTest
+        //设置自动生成单元测试用例
+        //generateTests
+    }
+
+
+
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -24,24 +43,22 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.android.support:support-v4:25.3.1'
+    testCompile 'junit:junit:4.12'
 
 
 
-
-    
 
 
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    //打印信息的log
     compile 'com.orhanobut:logger:2.1.1'
-    //申请动态权限的
-    compile 'com.github.hotchemi:permissionsdispatcher:2.4.0'
-    //实现图片缓慢在页面移动或者放大缩小. 这个作为启动界面的加载动画
     compile 'com.flaviofaria:kenburnsview:1.0.7'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
-    //检测内存泄漏的
+    compile 'com.github.bumptech.glide:glide:4.0.0'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.2'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.5'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'org.greenrobot:greendao:3.2.2' // add library
+
 }
